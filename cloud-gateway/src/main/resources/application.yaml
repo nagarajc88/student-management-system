@@ -34,3 +34,10 @@ spring:
           uri: lb://cloud-auth-service
           predicates:
             - Path=/auth/**
+
+        - id: universities-service
+          uri: lb://universities-service
+          predicates:
+            - Path=/university/**
+          filters:
+            - AuthenticationFilter
