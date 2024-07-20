@@ -1,0 +1,9 @@
+Note:
+1. In Micro service we have the following microservices
+   a) service-registry: which we need to start first and this will handle all our instances. using eureka.
+   b) Next need to start CloudConfigServer instance this is the one handle all common configuration files using in all instances.
+   c) Next we have need to run individual instances example (department service, employee service, auth service etc..).
+   d) Finally we need to Cloud-gateway service.
+2. The main purpose of this microservices application is to create architecture of microservice for our student management system.
+3. Still it is in development stage we need to work other microservice instances.
+4. we are using JDK V21 to run this microservice architecture.

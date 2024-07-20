@@ -12,7 +12,7 @@ public class CustomUserDetails implements UserDetails {
     private String password;
 
     public CustomUserDetails(User user) {
-        this.username = user.getName();
+        this.username = user.getUsername();
         this.password = user.getPassword();
     }
 

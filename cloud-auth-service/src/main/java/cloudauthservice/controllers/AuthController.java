@@ -10,6 +10,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import static java.lang.System.console;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
