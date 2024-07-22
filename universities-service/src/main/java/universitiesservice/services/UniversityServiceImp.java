@@ -27,6 +27,7 @@ public class UniversityServiceImp implements UniversityService{
 
     @Override
     public List<University> getUniversities() {
+
         return universityRepository.findAll();
     }
 

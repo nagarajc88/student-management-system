@@ -20,14 +20,15 @@ public class UniversityController {
     private UniversityService universityService;
 
     @GetMapping("/list")
-    public List<University> getUniversities() {
-     return universityService.getUniversities();
+    public ResponseEntity<List<University>> getUniversities() {
+        List<University> universities = universityService.getUniversities();
+        return new ResponseEntity<>(universities, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<University> getUniversity(@PathVariable Long id){
         University university = universityService.getUniversityById(id);
-        return new ResponseEntity<>(university, HttpStatus.CREATED);
+        return new ResponseEntity<>(university, HttpStatus.OK);
     }
 
 

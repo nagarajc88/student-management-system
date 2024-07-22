@@ -1,5 +1,7 @@
 package universitiesservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +15,8 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "universitycategory")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class UniversityCategory {
 
     @Id
@@ -25,8 +29,9 @@ public class UniversityCategory {
 
     private String state;
 
-    @OneToMany(mappedBy = "universitycategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<University> university = new ArrayList<>();
+    // if we give one to many and many to one the relationship will get conflict so need to use JsonIdentityInfo as class level annotation.
+    // @OneToMany(mappedBy = "universitycategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    // private List<University> universities;
 
     public UniversityCategory(String name, String code, String state){
         this.name= name;
