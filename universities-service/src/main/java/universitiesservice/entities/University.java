@@ -1,5 +1,6 @@
 package universitiesservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,8 @@ public class University {
 
     private String registration_id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "universitycategory_id", nullable = false)
+    @JsonIgnore
     private UniversityCategory universitycategory;
 }

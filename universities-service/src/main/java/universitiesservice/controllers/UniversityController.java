@@ -1,6 +1,8 @@
 package universitiesservice.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import universitiesservice.dto.UniversityRequest;
 import universitiesservice.entities.University;
@@ -23,23 +25,21 @@ public class UniversityController {
     }
 
     @GetMapping("/{id}")
-    public University getUniversity(@PathVariable Long id){
-        return universityService.getUniversityById(id);
+    public ResponseEntity<University> getUniversity(@PathVariable Long id){
+        University university = universityService.getUniversityById(id);
+        return new ResponseEntity<>(university, HttpStatus.CREATED);
     }
 
 
-    @PostMapping("/add")
-    public University addUniversity(@RequestBody University university){
-        return universityService.saveUniversity(university);
+    @PostMapping("{categoryId}/add")
+    public ResponseEntity<University> addUniversity(@PathVariable(value = "categoryId") Long categoryId, @RequestBody University universityRequest){
+        University university = universityService.addUniversity(categoryId, universityRequest);
+        return new ResponseEntity<>(university, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
-    public University updateUniversity(@PathVariable Long id, @RequestBody UniversityRequest universityRequest){
-        University existingUniversity = universityService.getUniversityById(id);
-        existingUniversity.setId(id);
-        existingUniversity.setName(universityRequest.getName());
-        existingUniversity.setCode(universityRequest.getCode());
-        existingUniversity.setRegistration_id(universityRequest.getRegistration_id());
-        return universityService.updateUniversity(existingUniversity);
+    @PutMapping("{categoryId}/update/{id}")
+    public ResponseEntity<University> updateUniversity(@PathVariable(value = "categoryId") Long categoryId, @PathVariable Long id, @RequestBody University universityRequest){
+        University university = universityService.updateUniversity(categoryId, id, universityRequest);
+        return new ResponseEntity<>(university, HttpStatus.OK);
     }
 }

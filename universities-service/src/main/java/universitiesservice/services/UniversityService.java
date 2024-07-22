@@ -1,33 +1,17 @@
 package universitiesservice.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import universitiesservice.dto.UniversityRequest;
+import org.springframework.http.ResponseEntity;
 import universitiesservice.entities.University;
-import universitiesservice.repositories.UniversityRepository;
-
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class UniversityService {
+public interface UniversityService {
 
-    @Autowired
-    private UniversityRepository universityRepository;
+    University getUniversityById(Long id);
 
-    public University getUniversityById(Long id){
-        return universityRepository.findById(id).get();
-    }
+    List<University> getUniversities();
 
-    public List<University> getUniversities(){
-        return universityRepository.findAll();
-    }
+    University addUniversity(Long categoryId, University university);
 
-    public University saveUniversity(University university){
-        return universityRepository.save(university);
-    }
-
-    public University updateUniversity(University university){
-        return universityRepository.save(university);
-    }
+    University updateUniversity(Long categoryId, Long id, University university);
 }

@@ -27,4 +27,11 @@ public class UniversityCategory {
 
     @OneToMany(mappedBy = "universitycategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<University> university = new ArrayList<>();
+
+    public UniversityCategory(String name, String code, String state){
+        this.name= name;
+        this.code = code;
+        this.state = state;
+    }
+
 }
